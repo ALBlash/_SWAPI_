@@ -24,6 +24,25 @@ import { getIdFromModel } from "./services/helper.service.js";
     peopleList.appendChild(personList);
     console.log(people);
 
+    let nextBtn = document.querySelector('.next-btn') as HTMLButtonElement;
+    const prevBtn = document.querySelector('.prev-btn') as HTMLButtonElement;
+
+    // if (nextBtn)
+    nextBtn.addEventListener('click', () => {
+        console.log("next has been clicked");
+    });
+
+    if (prevBtn)
+        prevBtn.addEventListener('click', () => {
+            console.log("prev has been clicked");
+        });
+
+
+
+    // console.log("prev has been clicked");
+
+
+
     // TODO: change the option of active btn only for the people list
     personList.querySelectorAll('button').forEach(btn => {
         btn.addEventListener('click', async function () {

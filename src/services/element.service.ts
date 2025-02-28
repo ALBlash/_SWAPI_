@@ -7,8 +7,23 @@ import { getIdFromModel } from './helper.service.js';
 
 // creates a div with a class that will hold all the buttons;
 export function createElementList(elements: (IPerson | IStarship | IVehicle | IFilm)[]) {
+
+
     const div = document.createElement('div');
     div.classList.add('list-group');
+
+    if (elements.length === 0) {
+        const noData = document.createElement('div');
+        noData.classList.add('no-data');
+        noData.innerHTML = `
+            <svg width="50" height="50" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-10h2v8h-2V6z" fill="red"/>
+            </svg>
+            <p style="margin-top:5px;">No Results</p>
+        `;
+        div.appendChild(noData);
+    }
+
 
     elements.forEach((el) => {
         const btn = createButtonElement(el, 'eye_color' in el && 'gender' in el); // Pass a flag for IPerson

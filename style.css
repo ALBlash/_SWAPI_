@@ -118,3 +118,41 @@ h1 {
     color: #ffcc00;
     text-shadow: 2px 2px #000;
 }
+
+.next-btn,
+.prev-btn {
+    font-family: 'Press Start 2P', cursive;
+    /* Retro game font */
+    font-size: 14px;
+    padding: 12px 24px;
+    border: 3px solid #ffcc00;
+    /* Bright yellow border */
+    background: linear-gradient(45deg, #ff0000, #ff8800);
+    /* Red-orange gradient */
+    color: #fff;
+    /* White text */
+    text-transform: uppercase;
+    cursor: pointer;
+    box-shadow: 4px 4px 0px #000;
+    /* Pixelated shadow */
+    transition: transform 0.1s ease-in-out, box-shadow 0.1s ease-in-out;
+    outline: none;
+}
+
+.next-btn:hover,
+.prev-btn:hover {
+    transform: translateY(-2px);
+    /* Lift effect */
+    box-shadow: 6px 6px 0px #000;
+    /* Stronger shadow */
+}
+
+.next-btn:active,
+.prev-btn:active {
+    transform: translateY(2px);
+    /* Pressed effect */
+    box-shadow: 2px 2px 0px #000;
+}
+
+/* Optional: Load a pixel font */
+/* @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap'); */

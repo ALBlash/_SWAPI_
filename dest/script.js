@@ -20,10 +20,23 @@ import { getIdFromModel } from "./services/helper.service.js";
     const vehiclesList = document.querySelector('.vehicles-list');
     const starShipsList = document.querySelector('.starships-list');
     const filmsList = document.querySelector('.films-list');
+    // removes the list of buttons before creating new elements
     (_a = peopleList.querySelector(".list-group")) === null || _a === void 0 ? void 0 : _a.remove();
     const personList = createElementList(people);
     peopleList.appendChild(personList);
     console.log(people);
+    let nextBtn = document.querySelector('.next-btn');
+    const prevBtn = document.querySelector('.prev-btn');
+    // if (nextBtn)
+    nextBtn.addEventListener('click', () => {
+        console.log("next has been clicked");
+    });
+    if (prevBtn)
+        prevBtn.addEventListener('click', () => {
+            console.log("prev has been clicked");
+        });
+    // console.log("prev has been clicked");
+    // TODO: change the option of active btn only for the people list
     personList.querySelectorAll('button').forEach(btn => {
         btn.addEventListener('click', function () {
             var _a, _b, _c, _d;
@@ -35,6 +48,10 @@ import { getIdFromModel } from "./services/helper.service.js";
                 const person = people.find(p => this.id === getIdFromModel(p));
                 console.log(person);
                 // populate starships list
+                // one person may have more then one starship
+                // the starships are saved in an array so we are iterating over the array with map
+                // creating a promise to each starship, then the promise will let us know whats the status
+                // if its Pending" or "Fulfilled" or "Rejected"
                 const starShipsPromises = person.starships.map((getSingleByUrl));
                 const starShips = yield Promise.all(starShipsPromises);
                 const starShipsListElements = createElementList(starShips);

@@ -18,6 +18,16 @@ export function getCachedCollection(resource) {
         return Promise.resolve(data);
     });
 }
+// export async function getCachedNextPage<T>(resource: string): Promise<{ results: T[] }> {
+//     const cache = localStorage.getItem(`${resource}?page=${localStorage.getItem(`${resource}-page`) || 1}`);
+//     if (cache) {
+//         return JSON.parse(cache);
+//     }
+//     const data: { results: T[] } = await fetch(`https://swapi.dev/api/${resource}?page=${Number(localStorage.getItem(`${resource}-page`) || 1) + 1}`).then(res => res.json());
+//     localStorage.setItem(`${resource}-page`, (Number(localStorage.getItem(`${resource}-page`) || 1) + 1).toString());
+//     localStorage.setItem(`${resource}`, JSON.stringify(data));
+//     return Promise.resolve(data);
+// }
 export function getCachedSingleByUrl(url) {
     return __awaiter(this, void 0, void 0, function* () {
         const cache = localStorage.getItem(url);
