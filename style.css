@@ -60,12 +60,17 @@ body {
     font-family: 'Press Start 2P', cursive, Arial, sans-serif;
     text-transform: uppercase;
     letter-spacing: 2px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 
 .container {
-    margin-top: 10px;
+    /* margin-top: 25px; */
+    height: 90vh;
     width: 100vw;
-    height: 98vh;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: 2fr 1fr;
