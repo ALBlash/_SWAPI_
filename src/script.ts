@@ -3,12 +3,13 @@ import { IPerson } from "./models/person.interface.js";
 import { IPlanet } from "./models/planet.interface.js";
 import { IStarship } from "./models/starship.interface.js";
 import { IVehicle } from "./models/vehicle.interface.js";
+import { getAllPeople } from "./services/cache.service.js";
 import { getCollection, getSingleByUrl } from "./services/dal.service.js";
 import { createElementList, createPlanetElement } from "./services/element.service.js";
 import { getIdFromModel } from "./services/helper.service.js";
 
 (async () => {
-
+    getAllPeople()
     const { results: people } = await getCollection<IPerson>('people');
     // const result = await getCollection<IPerson>('people');
     // const people = result.results;
@@ -24,22 +25,6 @@ import { getIdFromModel } from "./services/helper.service.js";
     peopleList.appendChild(personList);
     console.log(people);
 
-    let nextBtn = document.querySelector('.next-btn') as HTMLButtonElement;
-    const prevBtn = document.querySelector('.prev-btn') as HTMLButtonElement;
-
-    // if (nextBtn)
-    nextBtn.addEventListener('click', () => {
-        console.log("next has been clicked");
-    });
-
-    if (prevBtn)
-        prevBtn.addEventListener('click', () => {
-            console.log("prev has been clicked");
-        });
-
-
-
-    // console.log("prev has been clicked");
 
 
 

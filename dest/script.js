@@ -7,11 +7,13 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+import { getAllPeople } from "./services/cache.service.js";
 import { getCollection, getSingleByUrl } from "./services/dal.service.js";
 import { createElementList, createPlanetElement } from "./services/element.service.js";
 import { getIdFromModel } from "./services/helper.service.js";
 (() => __awaiter(void 0, void 0, void 0, function* () {
     var _a;
+    getAllPeople();
     const { results: people } = yield getCollection('people');
     // const result = await getCollection<IPerson>('people');
     // const people = result.results;
@@ -25,17 +27,6 @@ import { getIdFromModel } from "./services/helper.service.js";
     const personList = createElementList(people);
     peopleList.appendChild(personList);
     console.log(people);
-    let nextBtn = document.querySelector('.next-btn');
-    const prevBtn = document.querySelector('.prev-btn');
-    // if (nextBtn)
-    nextBtn.addEventListener('click', () => {
-        console.log("next has been clicked");
-    });
-    if (prevBtn)
-        prevBtn.addEventListener('click', () => {
-            console.log("prev has been clicked");
-        });
-    // console.log("prev has been clicked");
     // TODO: change the option of active btn only for the people list
     personList.querySelectorAll('button').forEach(btn => {
         btn.addEventListener('click', function () {

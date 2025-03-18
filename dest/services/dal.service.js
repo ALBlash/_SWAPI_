@@ -7,16 +7,18 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import { getCachedCollection, getCachedSingleByUrl } from "./cache.service.js";
+import { getAllPeople, getCachedCollection, getCachedSingleByUrl } from "./cache.service.js";
 export function getCollection(resource) {
     return __awaiter(this, void 0, void 0, function* () {
-        // return await fetch(`https://swapi.dev/api/${resource}`).then(res => res.json());
-        return getCachedCollection(resource);
+        if (resource === "people") {
+            const results = yield getAllPeople(); // Fetch all people (merged logic)
+            return { results }; // Explicitly cast to match T[]
+        }
+        return getCachedCollection(resource); // Default for other resources
     });
 }
 export function getSingleByUrl(url) {
     return __awaiter(this, void 0, void 0, function* () {
-        // return (await fetch(url)).json();
         return getCachedSingleByUrl(url);
     });
 }

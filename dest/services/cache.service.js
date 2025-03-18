@@ -7,6 +7,24 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+export function getAllPeople() {
+    return __awaiter(this, void 0, void 0, function* () {
+        const cache = localStorage.getItem("allPeople");
+        if (cache) {
+            return JSON.parse(cache);
+        }
+        let allPeople = [];
+        let nextUrl = "https://swapi.dev/api/people/";
+        while (nextUrl) {
+            const data = yield fetch(nextUrl).then(res => res.json());
+            allPeople = [...allPeople, ...data.results];
+            nextUrl = data.next;
+        }
+        localStorage.setItem("allPeople", JSON.stringify(allPeople));
+        console.log("Fetched all people:", allPeople);
+        return allPeople;
+    });
+}
 export function getCachedCollection(resource) {
     return __awaiter(this, void 0, void 0, function* () {
         const cache = localStorage.getItem(resource);
@@ -18,23 +36,13 @@ export function getCachedCollection(resource) {
         return Promise.resolve(data);
     });
 }
-// export async function getCachedNextPage<T>(resource: string): Promise<{ results: T[] }> {
-//     const cache = localStorage.getItem(`${resource}?page=${localStorage.getItem(`${resource}-page`) || 1}`);
-//     if (cache) {
-//         return JSON.parse(cache);
-//     }
-//     const data: { results: T[] } = await fetch(`https://swapi.dev/api/${resource}?page=${Number(localStorage.getItem(`${resource}-page`) || 1) + 1}`).then(res => res.json());
-//     localStorage.setItem(`${resource}-page`, (Number(localStorage.getItem(`${resource}-page`) || 1) + 1).toString());
-//     localStorage.setItem(`${resource}`, JSON.stringify(data));
-//     return Promise.resolve(data);
-// }
 export function getCachedSingleByUrl(url) {
     return __awaiter(this, void 0, void 0, function* () {
         const cache = localStorage.getItem(url);
         if (cache) {
             return JSON.parse(cache);
         }
-        const data = yield (yield fetch(url)).json();
+        const data = yield fetch(url).then(res => res.json());
         localStorage.setItem(url, JSON.stringify(data));
         return Promise.resolve(data);
     });
