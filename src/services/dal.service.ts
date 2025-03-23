@@ -1,5 +1,5 @@
 import { getAllPeople, getCachedCollection, getCachedSingleByUrl } from "./cache.service.js";
-import { IPerson } from "../models/person.interface.js";
+
 
 export async function getCollection<T>(resource: string): Promise<{ results: T[] }> {
    if (resource === "people") {

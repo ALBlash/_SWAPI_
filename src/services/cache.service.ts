@@ -10,11 +10,14 @@ export async function getAllPeople(): Promise<IPerson[]> {
     if (cache) {
         return JSON.parse(cache);
     }
-
+    const spinner = document.querySelector('.spinner') as HTMLDivElement;
     let allPeople: IPerson[] = [];
     let nextUrl: string | undefined = "https://swapi.dev/api/people/";
+    const body = document.querySelector('.body') as HTMLBodyElement;
+    body.style.opacity = '0.5';
 
     while (nextUrl) {
+        spinner.classList.add("loader");
         const data: PeopleResponse = await fetch(nextUrl).then(res => res.json());
         allPeople = [...allPeople, ...data.results];
         nextUrl = data.next;
@@ -22,7 +25,8 @@ export async function getAllPeople(): Promise<IPerson[]> {
 
     localStorage.setItem("allPeople", JSON.stringify(allPeople));
     console.log("Fetched all people:", allPeople);
-
+    body.style.opacity = '1';
+    spinner.classList.remove("loader");
     return allPeople;
 }
 

@@ -9,10 +9,9 @@ import { createElementList, createPlanetElement } from "./services/element.servi
 import { getIdFromModel } from "./services/helper.service.js";
 
 (async () => {
-    getAllPeople()
+
     const { results: people } = await getCollection<IPerson>('people');
-    // const result = await getCollection<IPerson>('people');
-    // const people = result.results;
+
     const peopleList = document.querySelector('.people-list') as HTMLDivElement;
     const homeWorldName = document.querySelector('.homeworld') as HTMLDivElement;
     const vehiclesList = document.querySelector('.vehicles-list') as HTMLDivElement;
@@ -27,8 +26,6 @@ import { getIdFromModel } from "./services/helper.service.js";
 
 
 
-
-    // TODO: change the option of active btn only for the people list
     personList.querySelectorAll('button').forEach(btn => {
         btn.addEventListener('click', async function () {
             homeWorldName.querySelectorAll('.homeworld-name')?.forEach(el => el.remove());

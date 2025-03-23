@@ -109,5 +109,30 @@ h1 {
 }
 
 
+
+/* HTML: <div class="loader"></div> */
+.loader {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    font-family: sans-serif;
+    font-size: 30px;
+    font-weight: bold;
+    transform: translate(-50%, -50%);
+    opacity: 1 !important;
+    z-index: 9999;
+}
+
+
+.loader:before {
+    content: "Loading..."
+}
+
+@keyframes l2 {
+    to {
+        background-size: 100% 3px
+    }
+}
+
 /* Optional: Load a pixel font */
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');

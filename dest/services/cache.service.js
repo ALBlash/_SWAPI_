@@ -13,15 +13,21 @@ export function getAllPeople() {
         if (cache) {
             return JSON.parse(cache);
         }
+        const spinner = document.querySelector('.spinner');
         let allPeople = [];
         let nextUrl = "https://swapi.dev/api/people/";
+        const body = document.querySelector('.body');
+        body.style.opacity = '0.5';
         while (nextUrl) {
+            spinner.classList.add("loader");
             const data = yield fetch(nextUrl).then(res => res.json());
             allPeople = [...allPeople, ...data.results];
             nextUrl = data.next;
         }
         localStorage.setItem("allPeople", JSON.stringify(allPeople));
         console.log("Fetched all people:", allPeople);
+        body.style.opacity = '1';
+        spinner.classList.remove("loader");
         return allPeople;
     });
 }
